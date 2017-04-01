@@ -19,24 +19,18 @@ export default class PostBox extends Component {
     this.state = {
       title: '',
       summary: '',
+      votes: 0,
       id: 0,
     };
   }
 
-  // Cuando el usuario presiona en el boton submit
-  // utilizamos el callback submitProps que es pasado
-  // a este componente mediante una propiedad.
-  handleSubmit(e) {
-    this.props.submitPost(this.state);
-
-    // Reseteamos el estado para que luego de presionar
-    // submit se vacie el input y el text area.
-    // Volvemos el id a 0 para mantener la convencion
-    // de que 0 significa que no tiene id.
+  handleClick() {
+    this.props.onPostSubmit(this.state);
     this.setState({
-      title:'',
+      title: '',
       summary: '',
-      id:0,
+      votes: 0,
+      id: 0,
     });
   }
 
@@ -52,7 +46,7 @@ export default class PostBox extends Component {
   }
 
   // Notese que como estamos utilizando this.setState en onTitleChange,
-  // onSummaryChange y handleSubmit entonces necesitamos evitar que javascript
+  // onSummaryChange y onPostSubmit entonces necesitamos evitar que javascript
   // nos apunte el this al input, textarea y button respectivamente. Para ello
   // utilizamos bind, fijando this a la instancia de PostBox.
   render() {
@@ -67,7 +61,7 @@ export default class PostBox extends Component {
           <textarea className="form-control" value={this.state.summary} onChange={this.onSummaryChange.bind(this)}/>
         </div>
         <div className="form-group">
-          <button className="btn btn-primary" onClick={this.handleSubmit.bind(this)}>Submit</button>
+          <button className="btn btn-primary" onClick={this.handleClick.bind(this)}>Submit</button>
         </div>
       </div>
     );

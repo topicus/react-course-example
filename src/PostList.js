@@ -8,17 +8,13 @@ import PostBox from './PostBox';
  */
 export default class PostList extends Component {
 
-  submitPost(post) {
-    this.props.onPostSubmit(post);
-  }
-
   render() {
     // Hacemos esto para evitar tipear siempre this.state...
     const posts = this.props.posts;
 
     return (
       <div className="row">
-        <PostBox submitPost={this.submitPost.bind(this)}/>
+        <PostBox {...this.props}/>
         <div className="col-md-12">
           {
             // Cada post es un objeto pero para renderizar nosotros necesitamos
@@ -26,7 +22,7 @@ export default class PostList extends Component {
             // post de la lista y devuelve un componente post pasando los datos
             // por propiedad.
             posts.map(post => (
-              <Post key={post.id} title={post.titulo} summary={post.bajada} />
+              <Post key={post.id} {...post} {...this.props}/>
             ))
           }
         </div>

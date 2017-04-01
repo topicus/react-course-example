@@ -12,6 +12,8 @@ export default class Post extends Component {
       <div>
         <h3>{this.props.title}</h3>
         <p>{this.props.summary}</p>
+        <div>Votes: {this.props.votes || 0}</div>
+        <button onClick={ event => this.props.vote(this.props.id) }>+1</button>
       </div>
     );
   }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PostList from './PostList';
-import postData from './postsData';
 import './App.css';
 
 
@@ -40,7 +39,7 @@ class App extends Component {
   onPostSubmit(post){
     // Para los id estamos utilizando un valor que se incrementa
     post.id = this.getNextId();
-
+    post.votes = 0;
     // Esta sintaxis puede parecer un poco extraña:
     // [post, ...this.state.posts]
     // Lo que hace es simplemente decir que el primer
@@ -57,14 +56,32 @@ class App extends Component {
   componentDidMount() {
     fetch('http://localhost:3001/posts')
       .then(response => response.json())
-      .then(posts => this.setState({posts}));
+      .then(posts => {
+        let ps = posts.map( post => {
+          post.votes = 0;
+          return post;
+        });
+
+        this.setState({posts: ps});
+      });
+  }
+
+  onVote(id) {
+    let posts = this.state.posts.map( post => {
+      if(post.id === id) post.votes += 1;
+      return post;
+    });
+    this.setState({posts});
   }
 
   render() {
-    console.log(this.state.posts);
     return (
       <div className="container">
-        <PostList className="row" onPostSubmit={this.onPostSubmit.bind(this)} posts={this.state.posts} />
+        <PostList
+          vote={this.onVote.bind(this)}
+          onPostSubmit={this.onPostSubmit.bind(this)}
+          posts={this.state.posts}
+          className="row" />
       </div>
     );
   }
