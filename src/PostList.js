@@ -8,27 +8,6 @@ import PostBox from './PostBox';
  */
 export default class PostList extends Component {
 
-
-
-  getNextId() {
-    // Necesitamos saber el id maximo anterior y a eso
-    // sumarle 1 para obtener el nuevo id.
-    // Reduce itera sobre cada post y compara max contra
-    // el id del elemento actual de la iteración.
-    // Si el valor es más grande el id pasa a ser el nuevo max.
-    //
-    // Retornamos max en cada iteracion para que en la siguiente
-    // podamos compara contra el nuevo maximo.
-    //
-    // Finalmente retornamos lo que devuelve reduce (el maximo) + 1
-    return this.state.posts.reduce((max, post) => {
-      if(post.id > max)
-        max = post.id;
-
-      return max;
-    }, 0) + 1;
-  }
-
   submitPost(post) {
     this.props.onPostSubmit(post);
   }
