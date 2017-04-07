@@ -75,6 +75,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.context);
     return (
       <div className="container">
         <PostList
