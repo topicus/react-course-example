@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-router": "^4.0.0",
+    "react-router-dom": "^4.0.0"
   },
   "devDependencies": {
     "autoprefixer": "6.7.2",
@@ -39,17 +41,18 @@
     "postcss-loader": "1.2.2",
     "promise": "7.1.1",
     "react-dev-utils": "^0.5.2",
+    "react-redux": "^5.0.3",
+    "react-router": "^4.0.0",
+    "redux": "^3.5.2",
+    "redux-logger": "^3.0.1",
+    "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.1.0",
     "style-loader": "0.13.1",
     "url-loader": "0.5.7",
     "webpack": "1.14.0",
     "webpack-dev-server": "1.16.2",
     "webpack-manifest-plugin": "1.1.0",
-    "whatwg-fetch": "2.0.2",
-    "react-redux": "^5.0.3",
-    "react-router": "^4.0.0",
-    "redux": "^3.5.2",
-    "redux-promise": "^0.5.3",
-    "redux-thunk": "^2.1.0"
+    "whatwg-fetch": "2.0.2"
   },
   "scripts": {
     "start": "node scripts/start.js",
